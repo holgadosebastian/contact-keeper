@@ -1,6 +1,17 @@
 const express = require('express');
+const connectDB = require('./config/db');
 
 const app = express();
+
+connectDB();
+
+// Init
+
+app.get('/', (req, res) => {
+  res.json({ msg: 'Welcome to the ContactKeeper API...'});
+});
+
+app.use(express.json({ extended: false }));
 
 // Define Routes
 app.use('/api/users', require('./routes/users'));
